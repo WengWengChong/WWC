@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Log+ — GAMES IN MOTION · 游戏设计作品集</title>
+<meta name="description" content="Log+ 的个人作品集：UE5 游戏系统设计、PCG 程序化场景、Unity VR/AR 交互、三维动画与渲染。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500;1,700&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="fx-noise" aria-hidden="true"></div>
+<div class="fx-line" aria-hidden="true"><i></i><i></i><i></i></div>
+<canvas class="fx-grid" id="fxGrid" aria-hidden="true"></canvas>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <a class="nav__brand" href="#hero">
+    <span class="nav__mark">◤</span>
+    <span class="nav__name">黄家洛<em>HJL</em></span>
+  </a>
+  <nav class="nav__links" id="navLinks">
+    <a href="#works"  class="nav__link"><i>01</i>作品<em>WORKS</em></a>
+    <a href="#path"   class="nav__link"><i>02</i>经历<em>PATH</em></a>
+    <a href="#contact" class="nav__link"><i>03</i>联系<em>CONTACT</em></a>
+  </nav>
+  <button class="nav__burger" id="burger" aria-label="菜单"><i></i><i></i></button>
+</header>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <div class="hero__bg">
+    <img id="heroPoster" src="assets/img/hero-poster.jpg" alt="" aria-hidden="true">
+    <video id="heroVideo" autoplay muted loop playsinline preload="auto"
+           poster="assets/img/hero-poster.jpg" aria-hidden="true" tabindex="-1">
+      <source src="assets/video/hero.mp4" type="video/mp4">
+    </video>
+    <span class="hero__mask"></span>
+  </div>
+  <canvas class="hero__grid" id="heroGrid" aria-hidden="true"></canvas>
+
+  <div class="hero__deco" aria-hidden="true">
+    <span class="cross cross--tl"></span>
+    <span class="cross cross--tr"></span>
+    <span class="cross cross--bl"></span>
+    <span class="cross cross--br"></span>
+  </div>
+
+  <div class="hero__inner">
+    <div class="hero__meta">
+      <span class="lbl hero__metaNum">[ 001 ] — PORTFOLIO 2026</span>
+      <span class="hero__metaEdu"><i></i>虚拟现实应用技术 · 游戏设计</span>
+    </div>
+
+    <h1 class="hero__title">
+      <span class="hero__line">GAMES</span>
+      <span class="hero__line hero__line--it">IN <em>MOTION</em></span>
+    </h1>
+
+    <p class="hero__sub">
+      Log+ — 把想法做成能跑起来、能玩起来、能沉浸进去的世界。
+    </p>
+  </div>
+
+  <aside class="hero__info">
+    <div class="hero__infoItem"><span>ROLE</span><b>游戏设计 / VR·AR</b></div>
+    <div class="hero__infoItem"><span>BASED IN</span><b>深圳 · 中国</b></div>
+    <div class="hero__infoItem"><span>SINCE</span><b>2024</b></div>
+    <div class="hero__infoItem"><span>STATUS</span><b><i class="dot"></i>在校 · 可实习</b></div>
+    <a class="hero__reel" href="#works">VIEW REEL ↗</a>
+  </aside>
+
+  <!-- 横向展示带 -->
+  <div class="reel">
+    <div class="reel__track" id="reelTrack"></div>
+  </div>
+</section>
+
+<!-- ============ 作品 ============ -->
+<section class="section section--works" id="works">
+  <div class="wrap">
+    <div class="secHead" data-reveal>
+      <span class="lbl">[ 01 ] — 作品展示 / SELECTED WORKS</span>
+      <h2 class="secHead__title">Selected <i>works</i></h2>
+      <p class="secHead__note" id="worksNote"></p>
+    </div>
+
+    <div class="filters" data-reveal id="filters"></div>
+    <div class="works" id="worksGrid"></div>
+    <div class="worksEmpty" id="worksEmpty">该分类下暂无作品</div>
+  </div>
+</section>
+
+<!-- ============ 经历 ============ -->
+<section class="section section--path" id="path">
+  <div class="wrap">
+    <div class="secHead" data-reveal>
+      <span class="lbl">[ 02 ] — 项目经历 / PATH</span>
+      <h2 class="secHead__title">The <i>path</i> so far</h2>
+    </div>
+    <ol class="path" id="timeline"></ol>
+  </div>
+</section>
+
+<!-- ============ 联系 ============ -->
+<section class="section section--contact" id="contact">
+  <div class="wrap">
+    <div class="contact" data-reveal>
+      <span class="lbl">[ 03 ] — 取得联系 / CONTACT</span>
+      <h2 class="contact__title">Let's make something <i>playable</i></h2>
+      <p class="contact__note">求职意向：游戏设计 · 期望城市：深圳 · 在校可实习</p>
+
+      <div class="cred">
+        <div class="cred__col">
+          <span class="lbl lbl--dim">EDUCATION</span>
+          <b>深圳职业技术大学</b>
+          <em>虚拟现实应用技术 · 2024 — 2027</em>
+        </div>
+        <div class="cred__col cred__col--tools">
+          <span class="lbl lbl--dim">TOOLS</span>
+          <div class="chipset">
+            <i>UE5</i><i>Unity</i><i>Blender</i><i>C#</i><i>蓝图</i><i>SteamVR</i><i>AR Foundation</i><i>Photoshop</i>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact__row">
+        <a class="contact__item" href="tel:19896820434"><span class="lbl lbl--dim">PHONE</span><b>198 9682 0434</b></a>
+        <div class="contact__item"><span class="lbl lbl--dim">TARGET</span><b>游戏设计 / 深圳</b></div>
+        <div class="contact__item"><span class="lbl lbl--dim">EMAIL</span><b>微信同号</b></div>
+      </div>
+      <a class="contact__big" href="tel:19896820434">联系我 ↗</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <span>© 2026 Log+ — PORTFOLIO</span>
+    <span>UE5 · UNITY · BLENDER · VR / AR</span>
+    <span>SHENZHEN · CHINA</span>
+  </div>
+</footer>
+
+<!-- ============ 播放面板（内嵌 B 站播放器 + 项目详解） ============ -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <div class="lightbox__backdrop" data-close></div>
+  <button class="lightbox__close" id="lbClose" aria-label="关闭">
+    <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+
+  <div class="lightbox__sheet" role="dialog" aria-modal="true" aria-labelledby="lbTitle">
+    <div class="lightbox__bar">
+      <span class="lightbox__tag"><i></i>实机演示 · BILIBILI</span>
+      <a class="lightbox__bili" id="lbBili" href="#" target="_blank" rel="noopener">
+        在 B 站打开
+        <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      </a>
+    </div>
+
+    <div class="lightbox__stage" id="lbStage"></div>
+
+    <div class="lightbox__info">
+      <h3 class="lightbox__title" id="lbTitle"></h3>
+      <div class="lightbox__row">
+        <p class="lightbox__sub" id="lbSub"></p>
+        <div class="lightbox__tags" id="lbTags"></div>
+      </div>
+
+      <div class="lightbox__spec" id="lbSpec"></div>
+      <div class="lightbox__sections" id="lbSections"></div>
+
+      <div class="lightbox__foot">
+        <span>© Log+ — PORTFOLIO 2026</span>
+        <button class="lightbox__done" data-close>关闭面板</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
