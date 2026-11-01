@@ -256,34 +256,6 @@ const PROJECTS = [
   }
 ];
 
-/* 能力方向 */
-const STUDIO = [
-  {
-    num: '01',
-    name: 'UE5 游戏系统设计', en: 'Unreal Engine 5',
-    desc: 'GAS 战斗框架 · PCG 程序化场景 · 关卡流送与传送特效',
-    img: 'assets/img/cover-gas.jpg'
-  },
-  {
-    num: '02',
-    name: 'Unity VR / AR 交互', en: 'Unity & XR',
-    desc: 'SteamVR 台球 · AR 手势玩法 · 移动端沉浸式体验',
-    img: 'assets/img/cover-plane.jpg'
-  },
-  {
-    num: '03',
-    name: '三维动画与渲染', en: 'Animation & Render',
-    desc: 'Blender 骨骼绑定 · 权重与动画 · 爆炸 / 陨石 / 水流特效',
-    img: 'assets/img/cover-render.jpg'
-  },
-  {
-    num: '04',
-    name: '独立全流程开发', en: 'Full-cycle Dev',
-    desc: '需求分析 → 功能设计 → 实现 → 调优，AI 工具辅助提效',
-    img: 'assets/img/cover-pcg.jpg'
-  }
-];
-
 const TIMELINE = [
   { time: '2024.11 - 12', title: 'Unity 飞机大战', role: '个人项目', cat: 'unity' },
   { time: '2025.02 - 06', title: '第九届世界渲染大赛', role: '动画制作', cat: 'anim' },
@@ -295,8 +267,6 @@ const TIMELINE = [
   { time: '2026.08 - 10', title: '曙光之城', role: '独立开发', cat: 'unity' }
 ];
 
-/* Hero 背景画面（原视频已迁至 B 站，首屏改用静态画面缓慢推移） */
-const HERO_POSTER = 'assets/img/hero-poster.jpg';
 
 /* 生成 B 站播放器地址 */
 function biliEmbed(bvid, autoplay) {

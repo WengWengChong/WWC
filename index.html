@@ -3,12 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Log+ — GAMES IN MOTION · 游戏设计作品集</title>
+<title>Log+</title>
 <meta name="description" content="Log+ 的个人作品集：UE5 游戏系统设计、PCG 程序化场景、Unity VR/AR 交互、三维动画与渲染。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a0a0b'/%3E%3Cpath d='M8.5 7.3h5.6v12.4h9.4v5h-15z' fill='%23ff3b2f'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500;1,700&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css">
+<!-- 字体不阻塞首屏：先以系统字体渲染，字体到了再换上 -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500;1,700&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500;1,700&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap"></noscript>
+<!-- 首屏轮播前两张提前取，避免切到中心位时还是黑块 -->
+<link rel="preload" as="image" href="assets/img/cover-shuguang.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="assets/img/cover-gas.jpg">
+<link rel="stylesheet" href="assets/css/style.css?v=20261101g">
 </head>
 <body>
 
@@ -34,15 +40,11 @@
 
 <!-- ============ HERO ============ -->
 <section class="hero" id="hero">
-  <div class="hero__bg">
-    <img id="heroPoster" src="assets/img/hero-poster.jpg" alt="" aria-hidden="true">
-    <video id="heroVideo" autoplay muted loop playsinline preload="auto"
-           poster="assets/img/hero-poster.jpg" aria-hidden="true" tabindex="-1">
-      <source src="assets/video/hero.mp4" type="video/mp4">
-    </video>
+  <div class="hero__bg" aria-hidden="true">
+    <span class="hero__glow"></span>
     <span class="hero__mask"></span>
   </div>
-  <canvas class="hero__grid" id="heroGrid" aria-hidden="true"></canvas>
+  <canvas class="hero__field" id="pField" aria-hidden="true"></canvas>
 
   <div class="hero__deco" aria-hidden="true">
     <span class="cross cross--tl"></span>
@@ -65,6 +67,8 @@
     <p class="hero__sub">
       Log+ — 把想法做成能跑起来、能玩起来、能沉浸进去的世界。
     </p>
+
+    <div class="hero__hint" id="heroHint"><i></i><span>移动鼠标 · 粒子会跟过来</span></div>
   </div>
 
   <aside class="hero__info">
@@ -185,7 +189,32 @@
   </div>
 </div>
 
-<script src="assets/js/data.js"></script>
-<script src="assets/js/main.js"></script>
+<script src="assets/js/data.js?v=20261101g"></script>
+<script src="assets/js/main.js?v=20261101g"></script>
+
+<script>
+/* 兜底提示：若 style.css 没加载（常见于只把这一个 index.html 单独拷到手机上），
+   直接说明原因，不让人对着一页裸文字瞎猜。正常访问时不显示任何东西。 */
+(function () {
+  function check() {
+    var bg = '';
+    try { bg = getComputedStyle(document.body).backgroundColor; } catch (e) {}
+    if (bg === 'rgb(10, 10, 11)') return;              // 样式正常，直接退出
+    if (document.getElementById('noCssTip')) return;
+    var d = document.createElement('div');
+    d.id = 'noCssTip';
+    d.setAttribute('style', [
+      'position:fixed', 'left:0', 'right:0', 'top:0', 'z-index:2147483647',
+      'background:#B5231F', 'color:#fff', 'padding:14px 16px',
+      'font:14px/1.7 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif',
+      'box-shadow:0 2px 12px rgba(0,0,0,.45)'
+    ].join(';'));
+    d.textContent = '样式没有加载：这个页面需要和 assets 文件夹放在同一目录（样式、脚本、图片、视频都在里面）。请通过网址打开，或把整个文件夹一起复制到手机。';
+    document.body.appendChild(d);
+  }
+  if (document.readyState === 'complete') check();
+  else window.addEventListener('load', check, { once: true });
+})();
+</script>
 </body>
 </html>
