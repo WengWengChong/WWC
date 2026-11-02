@@ -45,9 +45,131 @@ const PROJECTS = [
     ]
   },
   {
+    id: 'vrpool',
+    cat: 'unity',
+    order: 2,
+    title: 'SteamVR 台球小游戏',
+    role: '功能制作',
+    date: '2025.10 - 2025.12',
+    year: '2025',
+    bvid: 'BV1PbxC6YEos',
+    cover: 'assets/img/cover-vrpool.jpg',
+    desc: '使用 Unity 制作一款 VR 台球小游戏，通过拿起球杆、击打蓄力、辅助线瞄准等功能实现台球游戏玩法。从导入 SteamVR 基础文件、配置环境、模型调整到功能制作，全部由个人完成。',
+    tags: ['Unity', 'SteamVR', 'VR 交互', '物理'],
+    spec: [
+      ['PLATFORM', 'PC VR · SteamVR'],
+      ['ENGINE', 'Unity'],
+      ['ROLE', '功能制作'],
+      ['TYPE', '个人项目']
+    ],
+    deliver: '可抓杆、蓄力、瞄准的完整 VR 台球玩法',
+    sections: [
+      ['项目概述与技术选型',
+       '用 Unity 做的一款 VR 台球小游戏，从导入 SteamVR 基础文件、配置环境、调整模型到功能制作全部个人完成。技术选型：Unity、SteamVR Plugin、XR 交互、Rigidbody 物理与物理材质、辅助线渲染。'],
+      ['球杆抓取与蓄力',
+       '球杆作为可抓取物体接入手柄：抓取点跟手、挥动带惯性；按下扳机进入蓄力状态，向后拉的距离映射成击球力度，松手即出杆。力度留有余量，轻推能做走位，重击可以开球。'],
+      ['辅助线瞄准',
+       '用射线在台面上投射辅助线，实时计算母球与目标球的碰撞点，把瞄准从「凭感觉」变成「看得见」；辅助线随球杆方向与俯仰角实时更新，瞄准时还能预判目标球的出球方向。'],
+      ['物理与手感调校',
+       '球与球、球与库边的碰撞用物理材质分别调弹性与摩擦，反复试出既符合直觉又不至于「飘」的手感；台面摩擦力与出杆力度单独做了参数面板，方便快速迭代而不必改代码。']
+    ]
+  },
+  {
+    id: 'arpet',
+    cat: 'unity',
+    order: 3,
+    title: 'AR 喂养小精灵',
+    role: '手势交互 & 玩法循环',
+    date: '2026.03 - 2026.06',
+    year: '2026',
+    bvid: 'BV1AhxC6wEBq',
+    cover: 'assets/img/cover-arpet.jpg',
+    desc: '团队项目，个人负责手势交互与玩法循环。基于 PICO AR 手势方案搭交互底座：把双手识别结果映射成 XRController 左右手模型，点按钮、抓物体全程不依赖手柄。挥砍水果按切面替换材质并生成两半模型，得分折成金币，再到商店换食物投喂精灵，好感度随之上涨；好感度阈值触发「惊喜」表现，骨骼动画 + Animator 状态机把数值变成看得见的情绪反馈。',
+    tags: ['PICO AR', '手势追踪', 'XRController', '世界空间 UI', '骨骼动画'],
+    spec: [
+      ['PLATFORM', 'Android · PICO AR'],
+      ['ENGINE', 'Unity · PICO SDK'],
+      ['ROLE', '手势交互 · 玩法循环'],
+      ['TYPE', '团队项目']
+    ],
+    deliver: '不依赖手柄的手势交互与「挥砍—换币—投喂」闭环',
+    sections: [
+      ['项目概述与技术选型',
+       '团队项目中由我负责手势交互与玩法循环。技术选型：Unity、PICO AR、PICO 手势追踪、XRController、Animator 状态机、世界空间 UI，目标是在不拿手柄的前提下把操作跑通。'],
+      ['手势交互底座',
+       '基于 PICO AR 的手势方案搭交互底座：把双手识别结果映射成 XRController 左右手模型，点按钮、抓物体全程不依赖手柄。这样上层玩法不用关心「手是真手还是手柄」，交互代码一次写好即可复用。'],
+      ['玩法循环',
+       '两个玩法串成一条完整循环：挥砍水果时按切面替换材质并生成两半模型，得分折成金币，再到商店换食物投喂精灵，好感度随之上涨。给玩家一个明确的驱动力——砍得越准，精灵越喜欢你。'],
+      ['情绪反馈与空间 UI',
+       '好感度达到阈值触发「惊喜」表现，骨骼动画配合 Animator 状态机把数值变成看得见的情绪反馈，而不是弹一行数字。UI 与精灵统一走世界空间锚定，界面贴在真实空间里而不是糊在屏幕上，走动时也能保持对位。']
+    ]
+  },
+  {
+    id: 'pcgpipe',
+    cat: 'ue',
+    order: 4,
+    title: 'PCG 程序化环境生成管线',
+    role: '独立完成（规则搭建 / 场景生成 / 镜头）',
+    date: '2026.11',
+    year: '2026',
+    bvid: 'BV1MJ4P6cEUi',
+    cover: 'assets/img/cover-pcg-pipeline.jpg',
+    desc: '用 UE5 的 PCG 框架搭一整套环境生成规则，把「手工摆物件」换成「用规则生成」：八组场景覆盖农田、街区、道路、河流、山林与断崖，共用同一条五段管线（采样 → 过滤裁剪 → 噪声调制 → 属性写入 → 实例化）。输入端统一抽象成地形高度场、样条曲线、关卡实例、纹理遮罩四类，换题材只需替换数据源与资产表，规则本身不必推倒重搭；再用布尔差集在道路占位区做二次裁剪，解决地砖压路、植被穿模这类程序化生成的高频问题。',
+    tags: ['UE5.4', 'PCG Graph', 'Spline 样条', 'Level Instance', 'Lumen'],
+    spec: [
+      ['PLATFORM', 'PC / Windows'],
+      ['ENGINE', 'Unreal Engine 5.4 · PCG'],
+      ['ROLE', '独立完成（规则搭建 / 场景生成 / 镜头）'],
+      ['TYPE', '个人项目']
+    ],
+    deliver: '全程序化生成的八组环境场景与合集巡游镜头',
+    sections: [
+      ['项目概述与技术选型',
+       '用 UE5 的 PCG 框架搭建一整套环境生成规则，把「手工摆物件」换成「用规则生成」。八组场景覆盖农田、街区、道路、河流、山林与断崖，共用同一条生成管线。技术选型：Unreal Engine 5.4、PCG Graph、Spline 样条、Level Instance 关卡实例，渲染侧为 Lumen 与虚拟阴影贴图。'],
+      ['统一数据源与规则范式',
+       '八组场景并未各写一套规则，而是共用同一个五段范式：采样 → 过滤裁剪 → 噪声调制 → 属性写入 → 实例化。输入端统一抽象成地形高度场、样条曲线、关卡实例、纹理遮罩四类，因此更换题材时只需替换数据源与资产表，规则本身不必推倒重搭。'],
+      ['地物分层与冲突消解',
+       '农作物、地砖、绿化带、植被、建筑分属不同的 PCG 图层，各自用密度、坡度、高度与随机种子控制落点。再用布尔差集在道路占位区做二次裁剪，避免地砖压路、植被穿模这类程序化生成的高频问题。近景保留手工微调的余量，远景完全交给规则批量生成，兼顾效率与观感。'],
+      ['模块化道路与地形贴合',
+       '道路用两种方案并行验证：一种把关卡实例当作预制路段，沿样条采样点实例化拼接，改预制件即改全线，迭代成本极低；另一种纯样条驱动路面与路肩，配合投影节点贴合起伏地形。河流沿用同一套样条逻辑，分三层生成水面、河床与岸线植被。'],
+      ['场景集成与镜头呈现',
+       '最后把山体、植被、建筑群与体积雾叠进同一个断崖场景，用摄像机动画做一次连续巡游：从山脚推到崖顶、穿林而过、落到水边。八组场景剪成一条合集，用连绵不断的镜头把规则生成的最终效果一次性交代清楚，也方便对外展示时快速建立空间印象。']
+    ]
+  },
+  {
+    id: 'shuguang',
+    cat: 'unity',
+    order: 5,
+    title: '曙光之城',
+    role: '独立开发',
+    date: '2026.08 - 2026.10',
+    year: '2026',
+    bvid: 'BV1WhxC6wEva',
+    cover: 'assets/img/cover-shuguang.jpg',
+    desc: '独立完成的三阶段关卡制动作游戏：外围清怪 → 守护核心抵挡三波敌人 → 通关结算，阶段推进、存档复活与失败重来共用一套状态机。敌人 AI 基于 NavMesh 寻路巡逻巢穴，卡死后自动回退重入导航，三波进攻节奏交由行为树调度，击杀接布娃娃受击表现。射击穿透、坦克炮台与炮管升降、无人机索敌三种操控分别调手感，共用一套可切换角色控制器与血量 / 耐力 / 伤害结算；炮弹留弹坑与爆炸特效，常显雷达同步战场，失败重来用 Shader 转场。',
+    tags: ['Unity', 'NavMesh', '行为树 AI', 'Ragdoll', 'Shader'],
+    spec: [
+      ['PLATFORM', 'PC / Windows'],
+      ['ENGINE', 'Unity'],
+      ['ROLE', '独立开发'],
+      ['TYPE', '个人项目']
+    ],
+    deliver: '三阶段关卡 + 三种可切换操控的完整动作游戏',
+    sections: [
+      ['三阶段关卡流程',
+       '独立设计三阶段关卡流程：外围清怪 → 守护核心抵挡三波行为树敌人 → 通关结算。阶段推进、存档复活与失败重来共用一套状态机，任何一处状态变化都不会让流程卡死。'],
+      ['敌人 AI 与进攻节奏',
+       '敌人 AI 以 NavMesh 寻路配巡逻点兜底，卡死后自动回退重入导航，不会贴着墙原地抖动；三波进攻节奏交给行为树调度，击杀接布娃娃（Ragdoll）受击表现，让打击反馈落得实在。'],
+      ['三种操控与统一结算',
+       '射击穿透、坦克炮台与炮管升降、无人机索敌三种操控分别调手感，共用一套可切换的角色控制器与血量 / 耐力 / 伤害结算体系，换载具不换规则，玩家的操作习惯可以延续。'],
+      ['战场反馈与转场',
+       '炮弹留弹坑与爆炸特效，常显雷达同步战场态势，不用回头找敌人；失败重来用 Shader 转场，把「再试一次」做成一段有节奏的过场，而不是生硬地重载关卡。']
+    ]
+  },
+  {
     id: 'gujian',
     cat: 'ue',
-    order: 2,
+    order: 6,
     title: '古建纪行',
     role: '场景跳转设计 & 第一场景搭建',
     date: '2026.03 - 2026.06',
@@ -77,7 +199,7 @@ const PROJECTS = [
   {
     id: 'pcg',
     cat: 'ue',
-    order: 3,
+    order: 7,
     title: '智能三维建模（PCG）',
     role: '第四场景搭建',
     date: '2025.09 - 2025.12',
@@ -105,99 +227,9 @@ const PROJECTS = [
     ]
   },
   {
-    id: 'shuguang',
-    cat: 'unity',
-    order: 4,
-    title: '曙光之城',
-    role: '独立开发',
-    date: '2026.08 - 2026.10',
-    year: '2026',
-    bvid: 'BV1WhxC6wEva',
-    cover: 'assets/img/cover-shuguang.jpg',
-    desc: '独立完成的三阶段关卡制动作游戏：外围清怪 → 守护核心抵挡三波敌人 → 通关结算，阶段推进、存档复活与失败重来共用一套状态机。敌人 AI 基于 NavMesh 寻路巡逻巢穴，卡死后自动回退重入导航，三波进攻节奏交由行为树调度，击杀接布娃娃受击表现。射击穿透、坦克炮台与炮管升降、无人机索敌三种操控分别调手感，共用一套可切换角色控制器与血量 / 耐力 / 伤害结算；炮弹留弹坑与爆炸特效，常显雷达同步战场，失败重来用 Shader 转场。',
-    tags: ['Unity', 'NavMesh', '行为树 AI', 'Ragdoll', 'Shader'],
-    spec: [
-      ['PLATFORM', 'PC / Windows'],
-      ['ENGINE', 'Unity'],
-      ['ROLE', '独立开发'],
-      ['TYPE', '个人项目']
-    ],
-    deliver: '三阶段关卡 + 三种可切换操控的完整动作游戏',
-    sections: [
-      ['三阶段关卡流程',
-       '独立设计三阶段关卡流程：外围清怪 → 守护核心抵挡三波行为树敌人 → 通关结算。阶段推进、存档复活与失败重来共用一套状态机，任何一处状态变化都不会让流程卡死。'],
-      ['敌人 AI 与进攻节奏',
-       '敌人 AI 以 NavMesh 寻路配巡逻点兜底，卡死后自动回退重入导航，不会贴着墙原地抖动；三波进攻节奏交给行为树调度，击杀接布娃娃（Ragdoll）受击表现，让打击反馈落得实在。'],
-      ['三种操控与统一结算',
-       '射击穿透、坦克炮台与炮管升降、无人机索敌三种操控分别调手感，共用一套可切换的角色控制器与血量 / 耐力 / 伤害结算体系，换载具不换规则，玩家的操作习惯可以延续。'],
-      ['战场反馈与转场',
-       '炮弹留弹坑与爆炸特效，常显雷达同步战场态势，不用回头找敌人；失败重来用 Shader 转场，把「再试一次」做成一段有节奏的过场，而不是生硬地重载关卡。']
-    ]
-  },
-  {
-    id: 'arpet',
-    cat: 'unity',
-    order: 5,
-    title: 'AR 喂养小精灵',
-    role: '手势交互 & 玩法循环',
-    date: '2026.03 - 2026.06',
-    year: '2026',
-    bvid: 'BV1AhxC6wEBq',
-    cover: 'assets/img/cover-arpet.jpg',
-    desc: '团队项目，个人负责手势交互与玩法循环。基于 PICO AR 手势方案搭交互底座：把双手识别结果映射成 XRController 左右手模型，点按钮、抓物体全程不依赖手柄。挥砍水果按切面替换材质并生成两半模型，得分折成金币，再到商店换食物投喂精灵，好感度随之上涨；好感度阈值触发「惊喜」表现，骨骼动画 + Animator 状态机把数值变成看得见的情绪反馈。',
-    tags: ['PICO AR', '手势追踪', 'XRController', '世界空间 UI', '骨骼动画'],
-    spec: [
-      ['PLATFORM', 'Android · PICO AR'],
-      ['ENGINE', 'Unity · PICO SDK'],
-      ['ROLE', '手势交互 · 玩法循环'],
-      ['TYPE', '团队项目']
-    ],
-    deliver: '不依赖手柄的手势交互与「挥砍—换币—投喂」闭环',
-    sections: [
-      ['项目概述与技术选型',
-       '团队项目中由我负责手势交互与玩法循环。技术选型：Unity、PICO AR、PICO 手势追踪、XRController、Animator 状态机、世界空间 UI，目标是在不拿手柄的前提下把操作跑通。'],
-      ['手势交互底座',
-       '基于 PICO AR 的手势方案搭交互底座：把双手识别结果映射成 XRController 左右手模型，点按钮、抓物体全程不依赖手柄。这样上层玩法不用关心「手是真手还是手柄」，交互代码一次写好即可复用。'],
-      ['玩法循环',
-       '两个玩法串成一条完整循环：挥砍水果时按切面替换材质并生成两半模型，得分折成金币，再到商店换食物投喂精灵，好感度随之上涨。给玩家一个明确的驱动力——砍得越准，精灵越喜欢你。'],
-      ['情绪反馈与空间 UI',
-       '好感度达到阈值触发「惊喜」表现，骨骼动画配合 Animator 状态机把数值变成看得见的情绪反馈，而不是弹一行数字。UI 与精灵统一走世界空间锚定，界面贴在真实空间里而不是糊在屏幕上，走动时也能保持对位。']
-    ]
-  },
-  {
-    id: 'vrpool',
-    cat: 'unity',
-    order: 6,
-    title: 'SteamVR 台球小游戏',
-    role: '功能制作',
-    date: '2025.10 - 2025.12',
-    year: '2025',
-    bvid: 'BV1PbxC6YEos',
-    cover: 'assets/img/cover-vrpool.jpg',
-    desc: '使用 Unity 制作一款 VR 台球小游戏，通过拿起球杆、击打蓄力、辅助线瞄准等功能实现台球游戏玩法。从导入 SteamVR 基础文件、配置环境、模型调整到功能制作，全部由个人完成。',
-    tags: ['Unity', 'SteamVR', 'VR 交互', '物理'],
-    spec: [
-      ['PLATFORM', 'PC VR · SteamVR'],
-      ['ENGINE', 'Unity'],
-      ['ROLE', '功能制作'],
-      ['TYPE', '个人项目']
-    ],
-    deliver: '可抓杆、蓄力、瞄准的完整 VR 台球玩法',
-    sections: [
-      ['项目概述与技术选型',
-       '用 Unity 做的一款 VR 台球小游戏，从导入 SteamVR 基础文件、配置环境、调整模型到功能制作全部个人完成。技术选型：Unity、SteamVR Plugin、XR 交互、Rigidbody 物理与物理材质、辅助线渲染。'],
-      ['球杆抓取与蓄力',
-       '球杆作为可抓取物体接入手柄：抓取点跟手、挥动带惯性；按下扳机进入蓄力状态，向后拉的距离映射成击球力度，松手即出杆。力度留有余量，轻推能做走位，重击可以开球。'],
-      ['辅助线瞄准',
-       '用射线在台面上投射辅助线，实时计算母球与目标球的碰撞点，把瞄准从「凭感觉」变成「看得见」；辅助线随球杆方向与俯仰角实时更新，瞄准时还能预判目标球的出球方向。'],
-      ['物理与手感调校',
-       '球与球、球与库边的碰撞用物理材质分别调弹性与摩擦，反复试出既符合直觉又不至于「飘」的手感；台面摩擦力与出杆力度单独做了参数面板，方便快速迭代而不必改代码。']
-    ]
-  },
-  {
     id: 'plane',
     cat: 'unity',
-    order: 7,
+    order: 8,
     title: 'Unity 飞机大战',
     role: '个人项目',
     date: '2024.11 - 2024.12',
@@ -227,7 +259,7 @@ const PROJECTS = [
   {
     id: 'render',
     cat: 'anim',
-    order: 8,
+    order: 9,
     title: '第九届世界渲染大赛',
     role: '动画制作',
     date: '2025.02 - 2025.06',
@@ -264,7 +296,8 @@ const TIMELINE = [
   { time: '2026.03 - 06', title: '古建纪行', role: '场景跳转 & 第一场景', cat: 'ue' },
   { time: '2026.03 - 06', title: 'AR 喂养小精灵', role: '手势交互 & 玩法循环', cat: 'unity' },
   { time: '2026.04 - 07', title: 'UE 游戏系统设计（GAS）', role: '制作第二场景', cat: 'ue' },
-  { time: '2026.08 - 10', title: '曙光之城', role: '独立开发', cat: 'unity' }
+  { time: '2026.08 - 10', title: '曙光之城', role: '独立开发', cat: 'unity' },
+  { time: '2026.11', title: 'PCG 程序化环境生成管线', role: '独立完成', cat: 'ue' }
 ];
 
 
@@ -277,12 +310,13 @@ function biliWatch(bvid) { return 'https://www.bilibili.com/video/' + bvid; }
 
 /* 展示带条目（取有视频的作品） */
 const REEL = [
-  { id: 'shuguang', cap: 'SHOWREEL', sub: '曙光之城',        img: 'assets/img/cover-shuguang.jpg' },
   { id: 'gas',    cap: 'SHOWREEL', sub: 'UE5 GAS 战斗系统',  img: 'assets/img/cover-gas.jpg' },
-  { id: 'pcg',    cap: 'SHOWREEL', sub: 'PCG 程序化场景',    img: 'assets/img/cover-pcg.jpg' },
-  { id: 'render', cap: 'SHOWREEL', sub: '世界渲染大赛',      img: 'assets/img/cover-render.jpg' },
   { id: 'vrpool', cap: 'SHOWREEL', sub: 'SteamVR 台球',      img: 'assets/img/cover-vrpool.jpg' },
   { id: 'arpet',  cap: 'SHOWREEL', sub: 'AR 喂养小精灵',     img: 'assets/img/cover-arpet.jpg' },
+  { id: 'pcgpipe',cap: 'SHOWREEL', sub: 'PCG 生成管线',     img: 'assets/img/cover-pcg-pipeline.jpg' },
+  { id: 'shuguang', cap: 'SHOWREEL', sub: '曙光之城',        img: 'assets/img/cover-shuguang.jpg' },
+  { id: 'gujian', cap: 'SHOWREEL', sub: '古建纪行',          img: 'assets/img/cover-gujian.jpg' },
+  { id: 'pcg',    cap: 'SHOWREEL', sub: 'PCG 程序化场景',    img: 'assets/img/cover-pcg.jpg' },
   { id: 'plane',  cap: 'SHOWREEL', sub: 'Unity 飞机大战',    img: 'assets/img/cover-plane.jpg' },
-  { id: 'gujian', cap: 'SHOWREEL', sub: '古建纪行',          img: 'assets/img/cover-gujian.jpg' }
+  { id: 'render', cap: 'SHOWREEL', sub: '世界渲染大赛',      img: 'assets/img/cover-render.jpg' },
 ];

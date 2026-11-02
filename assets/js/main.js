@@ -770,6 +770,72 @@
     }).join('');
   }
 
+  /* ---------- 联系方式：点击即复制 ---------- */
+  // 不跳转、不拉起拨号盘/邮箱客户端，点哪个就复制哪个，并给一条轻提示
+  (function contactCopy() {
+    const nodes = $$('[data-copy]');
+    if (!nodes.length) return;
+
+    let toastEl = null, toastTimer = 0;
+    function toast(msg) {
+      if (!toastEl) {
+        toastEl = document.createElement('div');
+        toastEl.className = 'toast';
+        document.body.appendChild(toastEl);
+      }
+      toastEl.textContent = msg;
+      toastEl.classList.add('is-on');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toastEl.classList.remove('is-on'), 1600);
+    }
+
+    function copyText(text) {
+      return new Promise(resolve => {
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(text).then(() => resolve(true), () => resolve(fallback(text)));
+          return;
+        }
+        resolve(fallback(text));
+      });
+    }
+
+    // 非 https / file:// 下的兜底
+    function fallback(text) {
+      try {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.cssText = 'position:fixed;top:0;left:-9999px;opacity:0';
+        document.body.appendChild(ta);
+        ta.select();
+        ta.setSelectionRange(0, text.length);
+        const ok = document.execCommand('copy');
+        ta.remove();
+        return ok;
+      } catch (e) { return false; }
+    }
+
+    nodes.forEach(el => {
+      el.addEventListener('click', () => {
+        const val = el.dataset.copy || '';
+        copyText(val).then(ok => {
+          if (!ok) { toast('复制失败，请长按选择'); return; }
+          toast('已复制 ' + val);
+          el.classList.add('is-copied');
+          // 提示文案临时改成「已复制」，1.4s 后还原
+          const tag = el.querySelector('.copy-tag, .cmail__tag');
+          if (tag) {
+            const origin = tag.dataset.origin || tag.textContent;
+            tag.dataset.origin = origin;
+            tag.textContent = '已复制';
+            setTimeout(() => { tag.textContent = origin; }, 1400);
+          }
+          setTimeout(() => el.classList.remove('is-copied'), 1400);
+        });
+      });
+    });
+  })();
+
   /* ---------- 启动 ---------- */
   // 动态统计：项目数 / 演示视频数（随 data.js 自动更新）
   const vidCount = PROJECTS.filter(p => p.bvid).length;

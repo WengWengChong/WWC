@@ -14,7 +14,7 @@
 <!-- 首屏轮播前两张提前取，避免切到中心位时还是黑块 -->
 <link rel="preload" as="image" href="assets/img/cover-shuguang.jpg" fetchpriority="high">
 <link rel="preload" as="image" href="assets/img/cover-gas.jpg">
-<link rel="stylesheet" href="assets/css/style.css?v=20261101g">
+<link rel="stylesheet" href="assets/css/style.css?v=20261102c">
 </head>
 <body>
 
@@ -134,11 +134,29 @@
       </div>
 
       <div class="contact__row">
-        <a class="contact__item" href="tel:19896820434"><span class="lbl lbl--dim">PHONE</span><b>198 9682 0434</b></a>
+        <button type="button" class="contact__item contact__item--copy" data-copy="19896820434">
+          <span class="lbl lbl--dim">PHONE</span><b>198 9682 0434</b>
+          <span class="copy-tag">点击复制</span>
+        </button>
         <div class="contact__item"><span class="lbl lbl--dim">TARGET</span><b>游戏设计 / 深圳</b></div>
-        <div class="contact__item"><span class="lbl lbl--dim">EMAIL</span><b>微信同号</b></div>
+        <div class="contact__item"><span class="lbl lbl--dim">WECHAT</span><b>微信同号</b></div>
       </div>
-      <a class="contact__big" href="tel:19896820434">联系我 ↗</a>
+
+      <div class="contact__cta">
+        <span class="contact__big">联系我</span>
+        <div class="mails">
+          <button type="button" class="cmail" data-copy="1431163779@qq.com">
+            <span class="cmail__k">QQ</span>
+            <span class="cmail__v">1431163779@qq.com</span>
+            <span class="cmail__tag">复制</span>
+          </button>
+          <button type="button" class="cmail" data-copy="hjl1431163779@gmail.com">
+            <span class="cmail__k">Gmail</span>
+            <span class="cmail__v">hjl1431163779@gmail.com</span>
+            <span class="cmail__tag">复制</span>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -189,8 +207,8 @@
   </div>
 </div>
 
-<script src="assets/js/data.js?v=20261101g"></script>
-<script src="assets/js/main.js?v=20261101g"></script>
+<script src="assets/js/data.js?v=20261102c"></script>
+<script src="assets/js/main.js?v=20261102c"></script>
 
 <script>
 /* 兜底提示：若 style.css 没加载（常见于只把这一个 index.html 单独拷到手机上），
